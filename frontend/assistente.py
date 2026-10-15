@@ -44,6 +44,12 @@ def contar(qtd, situacao):
     return f"{qtd} obras estão {NO_PLURAL[situacao]}"
 
 
+def exemplos_entre_aspas():
+    """'"Quantas obras estão atrasadas?", "Quais..." e "Me mostre a obra 3657"'."""
+    citados = [f'"{exemplo}"' for exemplo in EXEMPLOS]
+    return ", ".join(citados[:-1]) + " e " + citados[-1]
+
+
 @dataclass
 class Resposta:
     texto: str
@@ -278,7 +284,7 @@ def responder(pergunta, df):
                 fonte = "A IA não reconheceu a pergunta, então usei as palavras-chave."
 
     if escolha is None:
-        return Resposta("Não entendi a pergunta. Tente algo como: " + "; ".join(EXEMPLOS) + ".",
+        return Resposta("Não entendi a pergunta. Tente algo como: " + exemplos_entre_aspas() + ".",
                         fonte=fonte)
 
     consulta, params = escolha

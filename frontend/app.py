@@ -8,7 +8,7 @@ import streamlit as st
 
 import formatar
 import graficos
-from assistente import EXEMPLOS, responder
+from assistente import exemplos_entre_aspas, responder
 from dados import CONCLUIDA, EM_ANDAMENTO, PARALISADA, Filtros, aplicar_filtros, carregar_obras
 from prazos import DIFERENCA_MINIMA, avaliar_prazos, obras_em_atencao
 
@@ -178,7 +178,7 @@ def aba_prazos(df):
 
 
 def aba_perguntas(df):
-    st.caption("Pergunte sobre as obras filtradas. Exemplos: " + "; ".join(EXEMPLOS) + ".")
+    st.caption("Pergunte sobre as obras filtradas. Por exemplo: " + exemplos_entre_aspas() + ".")
     historico = st.session_state.setdefault("historico", [])
 
     for mensagem in historico:
