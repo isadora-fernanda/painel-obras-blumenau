@@ -1,4 +1,4 @@
-"""Conexão com o MySQL. As credenciais vêm do arquivo .env (veja .env.example)."""
+"""Conexão com o MySQL. As credenciais vêm do arquivo .env (veja o .env.example)."""
 
 import os
 
@@ -13,7 +13,8 @@ def obter_conexao():
         host=os.getenv("DB_HOST", "localhost"),
         user=os.getenv("DB_USER", "root"),
         password=os.getenv("DB_PASSWORD", ""),
-        port=int(os.getenv("DB_PORT", 3306)),
+        port=int(os.getenv("DB_PORT", "3306")),
         database=os.getenv("DB_DATABASE", "obrasblumenau"),
-        cursorclass=pymysql.cursors.DictCursor
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
     )
