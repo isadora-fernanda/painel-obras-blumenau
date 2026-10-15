@@ -44,7 +44,7 @@ O portal EngeGov é feito em JSF com PrimeFaces, então não basta baixar o HTML
 
 ### 4. Painel
 
-Os filtros da barra lateral (busca, secretaria, situação, tipo de intervenção e ano do contrato) valem para as quatro abas. A busca ignora acentos, então "concluida" encontra "CONCLUÍDA".
+Os filtros da barra lateral (busca, secretaria, situação, tipo de intervenção e ano do contrato) valem para as quatro abas. A busca procura no código, na descrição, na rua e na empresa, e ignora acentos: "construcao" encontra "CONSTRUÇÃO".
 
 - **Visão geral:** totais de obras e valores, obras por secretaria separadas por situação, valor contratado por secretaria dividido em executado e saldo, contratos assinados por ano e de onde vem o dinheiro (recurso próprio, operação de crédito, transferência da União ou do Estado).
 - **Consulta:** tabela das obras filtradas. Ao clicar numa linha aparecem os dados completos do contrato. Os resultados podem ser baixados em CSV no formato que o Excel em português abre direto.
@@ -129,7 +129,7 @@ painel-obras-blumenau/
 
 Revisei o projeto depois da entrega e corrigi vários problemas:
 
-- O scraper gravava o valor executado e o percentual como zero em todas as obras, porque os rótulos do HTML têm quebras de linha no meio ("Valor⏎Executado"). Também não lia o número da licitação nem o tipo de recurso. Refiz a leitura dos painéis com base no HTML real.
+- O scraper gravava o valor executado e o percentual como zero em todas as obras, porque no HTML do portal esses rótulos são quebrados em duas linhas ("Valor" numa, "Executado" na outra). Também não lia o número da licitação nem o tipo de recurso. Refiz a leitura dos painéis com base no HTML real.
 - Os filtros escondiam as obras sem data, e a consulta quebrava quando a obra selecionada saía do filtro.
 - O assistente só funcionava com chave de API e não avisava quando a Groq falhava. Agora ele mostra como entendeu cada pergunta e tem palavras-chave como reserva.
 - Os gráficos repetiam a mesma informação e, com a execução zerada, não mostravam nada útil.
